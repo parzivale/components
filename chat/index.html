@@ -34,7 +34,7 @@
     });
 
     const conversation = talkSession.getOrCreateConversation(
-        session
+        urlParams.get("bot_id") + "_" + String(me.id)
     );
     conversation.setParticipant(me);
 
