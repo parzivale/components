@@ -20,14 +20,12 @@
     Talk.ready.then(function () {
     const urlParams = new URLSearchParams(window.location.search);
     const me = new Talk.User({
-        email: urlParams.get("user_email"),
+        name: urlParams.get("user_name"),
         id: urlParams.get("user_id"),
-        phone: urlParams.get("user_phone"),
         photoUrl: urlParams.get("user_photo"),
     });
 
 
-    const session = Talk.oneOnOneId(me, {id: urlParams.get("bot_id")});
     const talkSession = new Talk.Session({
       appId: 'tSmc5UqI',
       me: me,
