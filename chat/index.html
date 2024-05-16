@@ -25,6 +25,7 @@
         photoUrl: urlParams.get("user_photo"),
     });
 
+    const bot = new Talk.User(urlParams.get("bot_id"));
 
     const talkSession = new Talk.Session({
       appId: 'tSmc5UqI',
@@ -35,6 +36,7 @@
         urlParams.get("bot_id") + "_" + String(me.id)
     );
     conversation.setParticipant(me);
+    conversation.setParticipant(bot);
 
     const chatbox = talkSession.createChatbox();
     chatbox.select(conversation);
