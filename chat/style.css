@@ -5,3 +5,7 @@
 }
 
 html, body {margin: 0; height: 100%; overflow: hidden}
+
+body.keyboard {
+  height: calc(100% + 500px); /* add padding for keyboard */
+}

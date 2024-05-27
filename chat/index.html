@@ -26,22 +26,34 @@
     });
 
     const bot = new Talk.User(urlParams.get("bot_id"));
-
+    const idea = urlParams.get("idea_id");
     const talkSession = new Talk.Session({
       appId: 'tSmc5UqI',
       me: me,
     });
 
     const conversation = talkSession.getOrCreateConversation(
-        urlParams.get("bot_id") + "_" + String(me.id)
+        urlParams.get("bot_id") + "_" + String(me.id) + "_" + idea
     );
     conversation.setParticipant(me);
-    conversation.setParticipant(bot);
+    conversation.setParticipant(bot)
 
     const chatbox = talkSession.createChatbox();
     chatbox.select(conversation);
     chatbox.mount(document.getElementById('talkjs-container'));
-  });
+    });
+    document.body.addEventListener("focus", event => {
+        const target = event.target;
+        switch (target.tagName) {
+            case "INPUT":
+            case "TEXTAREA":
+            case "SELECT":
+                document.body.classList.add("keyboard");
+        }
+    }, true);
+    document.body.addEventListener("blur", () => {
+        document.body.classList.remove("keyboard");
+    }, true);
     </script>
     <div id='talkjs-container' style='width: 100%; height: 100%'>
         <i>Loading chat...</i>
